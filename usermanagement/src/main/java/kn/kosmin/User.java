@@ -2,10 +2,27 @@ package kn.kosmin;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class User {
 	private long id;
 	private String firstName;
+	public User(String firstName, String lastName, java.util.Date date) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirthd = date;
+	}
+	
+	public User(Long id, String firstName, String lastName, java.util.Date date) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirthd = date;
+	}
+
+	public User() {
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -43,4 +60,29 @@ public class User {
 		int year = calendar.get(Calendar.YEAR);
 		return currentYear - year;
 	}
+
+	public boolean equals(Object obj) {
+		if (obj == null){
+			return false;
+		}
+		if (this == obj){
+			return true;
+		}
+		if (Objects.isNull(this.getId()) && Objects.isNull(obj)){
+			return true;
+			
+		}
+		return Objects.equals(this.getId(), (((User) obj).getId()));
+	}
+	public int hashCode() {
+		if (Objects.isNull(this.getId())){
+			return 0;
+		}
+		return Objects.hashCode(this.getId());
+		
+	}
+
+
+	
+	
 }
